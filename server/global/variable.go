@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/SERV4BIZ/coresan/config/utility"
-	"github.com/SERV4BIZ/gfp/filesystem"
+	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -53,7 +53,7 @@ func LoadConfig() (*jsons.JSONObject, error) {
 	jsoConfig.PutString("txt_host", "localhost")
 	jsoConfig.PutInt("num_port", 5679)
 
-	if filesystem.ExistFile(pathfile) {
+	if files.ExistFile(pathfile) {
 		var errConfig error
 		jsoConfig, errConfig = jsons.JSONObjectFromFile(pathfile)
 		if errConfig != nil {

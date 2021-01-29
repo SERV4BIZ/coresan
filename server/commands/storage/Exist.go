@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/SERV4BIZ/coresan/server/global"
-	"github.com/SERV4BIZ/gfp/filesystem"
+	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -18,7 +18,7 @@ func Exist(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 	txtFullpath := global.GetFullPath(txtCSNID)
 	txtInfopath := fmt.Sprint(txtFullpath, global.DS, "info.json")
 	txtDatapath := fmt.Sprint(txtFullpath, global.DS, "data.dat")
-	if strings.TrimSpace(txtCSNID) != "" && filesystem.ExistFile(txtInfopath) && filesystem.ExistFile(txtDatapath) {
+	if strings.TrimSpace(txtCSNID) != "" && files.ExistFile(txtInfopath) && files.ExistFile(txtDatapath) {
 		jsoResult.PutInt("status", 1)
 	}
 	return jsoResult

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/SERV4BIZ/coresan/config/utility"
-	"github.com/SERV4BIZ/gfp/filesystem"
+	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -16,7 +16,7 @@ func LoadConfig() (*jsons.JSONObject, error) {
 	jsoConfig.PutString("txt_host", "localhost")
 	jsoConfig.PutInt("int_port", 3210)
 
-	if filesystem.ExistFile(pathfile) {
+	if files.ExistFile(pathfile) {
 		return jsons.JSONObjectFromFile(pathfile)
 
 	}

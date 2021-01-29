@@ -9,7 +9,7 @@ import (
 
 	"github.com/SERV4BIZ/coresan/server/global"
 	"github.com/SERV4BIZ/coresan/server/utility"
-	"github.com/SERV4BIZ/gfp/filesystem"
+	"github.com/SERV4BIZ/gfp/files"
 )
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 	fmt.Println(global.JSOConfig.ToString())
 	fmt.Println("")
 	fmt.Println("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
-	filesystem.MakeDir(global.NFSPath)
+	files.MakeDir(global.NFSPath)
 
 	go func() {
 		for {

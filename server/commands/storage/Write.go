@@ -8,7 +8,7 @@ import (
 
 	"github.com/SERV4BIZ/coresan/server/global"
 	"github.com/SERV4BIZ/gfp/datetimes"
-	"github.com/SERV4BIZ/gfp/filesystem"
+	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 	"github.com/SERV4BIZ/gfp/uuid"
 )
@@ -48,13 +48,13 @@ func Write(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 		return jsoResult
 	}
 
-	errMake := filesystem.MakeDir(txtFullpath)
+	errMake := files.MakeDir(txtFullpath)
 	if errMake != nil {
 		jsoResult.PutString("txt_msg", fmt.Sprint("Can not make directory [ ", errMake, " ]"))
 		return jsoResult
 	}
 
-	intSize, errWrite := filesystem.WriteFile(txtDatapath, buffer)
+	intSize, errWrite := files.WriteFile(txtDatapath, buffer)
 	if errWrite != nil {
 		jsoResult.PutString("txt_msg", fmt.Sprint("Can not write data [ ", errWrite, " ]"))
 		return jsoResult
