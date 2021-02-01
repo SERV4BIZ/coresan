@@ -1,4 +1,4 @@
-package coresans
+package api
 
 import (
 	"strings"

@@ -1,4 +1,4 @@
-package coresans
+package api
 
 import (
 	"errors"
@@ -9,18 +9,18 @@ import (
 	"github.com/SERV4BIZ/coresan/api/utility"
 )
 
-// Exist is check file from coresan
-func (me *CORESAN) Exist(txtCSNID string) error {
+// Info is get info file from coresan
+func (me *CORESAN) Info(txtCSNID string) (*jsons.JSONObject, error) {
 	me.MutexMapDataItem.RLock()
 	dataItem, itemOk := me.MapDataItem[txtCSNID]
 	me.MutexMapDataItem.RUnlock()
 
 	if itemOk {
 		dataNodeItem := dataItem.DataNode
-		jsoReq := drivers.Exist(dataNodeItem.JSOHost, txtCSNID)
+		jsoReq := drivers.Info(dataNodeItem.JSOHost, txtCSNID)
 		if jsoReq.GetInt("status") > 0 {
 			jsoReq.GetObject("jso_data").PutString("txt_datanode", dataNodeItem.Name)
-			return nil
+			return jsoReq.GetObject("jso_data"), nil
 		}
 
 		// Update memory
@@ -48,7 +48,7 @@ func (me *CORESAN) Exist(txtCSNID string) error {
 		dataNodeItem := me.MapDataNode[nodeName]
 		me.MutexMapDataNode.RUnlock()
 
-		jsoReq := drivers.Exist(dataNodeItem.JSOHost, txtCSNID)
+		jsoReq := drivers.Info(dataNodeItem.JSOHost, txtCSNID)
 		if jsoReq.GetInt("status") > 0 {
 			// Update memory
 			dataItem = new(DataItem)
@@ -58,9 +58,11 @@ func (me *CORESAN) Exist(txtCSNID string) error {
 			me.MutexMapDataItem.Lock()
 			me.MapDataItem[txtCSNID] = dataItem
 			me.MutexMapDataItem.Unlock()
-			return nil
+
+			jsoReq.GetObject("jso_data").PutString("txt_datanode", dataNodeItem.Name)
+			return jsoReq.GetObject("jso_data"), nil
 		}
 	}
 
-	return errors.New("Not found file")
+	return nil, errors.New("Not found file")
 }
