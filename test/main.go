@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/SERV4BIZ/coresan/api/"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
