@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/SERV4BIZ/coresan/config/locals"
-	"github.com/SERV4BIZ/gfp/handler"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -16,7 +15,7 @@ func Info(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 
 	nodeName := strings.TrimSpace(strings.ToLower(jsoCmd.GetString("txt_name")))
 	nodeInfo, errNodeInfo := locals.LoadDataNodeInfo(nodeName)
-	if handler.Error(errNodeInfo) {
+	if errNodeInfo != nil {
 		jsoResult.PutString("txt_msg", fmt.Sprint("Can not load data node info [ ", errNodeInfo, " ]"))
 		return jsoResult
 	}

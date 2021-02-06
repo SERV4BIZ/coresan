@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/SERV4BIZ/coresan/config/locals"
-	"github.com/SERV4BIZ/gfp/handler"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -14,15 +13,15 @@ func Listing(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 	jsoResult.PutInt("status", 0)
 
 	jsaListing, errList := locals.ListDataNode()
-	if handler.Error(errList) {
+	if errList != nil {
 		jsoResult.PutString("txt_msg", fmt.Sprint("Can not listing data node [ ", errList, " ]"))
-	} else {
-		jsoData := jsons.JSONObjectFactory()
-		jsoData.PutInt("int_length", jsaListing.Length())
-		jsoData.PutArray("jsa_listing", jsaListing)
-		jsoResult.PutObject("jso_data", jsoData)
-		jsoResult.PutInt("status", 1)
+		return jsoResult
 	}
 
+	jsoData := jsons.JSONObjectFactory()
+	jsoData.PutInt("int_length", jsaListing.Length())
+	jsoData.PutArray("jsa_listing", jsaListing)
+	jsoResult.PutObject("jso_data", jsoData)
+	jsoResult.PutInt("status", 1)
 	return jsoResult
 }

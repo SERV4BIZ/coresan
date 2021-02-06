@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/SERV4BIZ/gfp/handler"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -18,7 +17,7 @@ func Request(jsoHost, jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 
 	url := fmt.Sprint(jsoHost.GetString("txt_protocol"), "://", jsoHost.GetString("txt_host"), ":", jsoHost.GetInt("int_port"), "/")
 	req, errReq := http.NewRequest("POST", url, bytes.NewBuffer([]byte(jsoCmd.ToString())))
-	if handler.Error(errReq) {
+	if errReq != nil {
 		jsoRequest.PutString("txt_msg", fmt.Sprint("Can not create post request [ ", errReq, " ]"))
 		return jsoRequest
 	}
@@ -34,7 +33,7 @@ func Request(jsoHost, jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 	timeout := time.Duration(time.Duration(intTime) * time.Second)
 	client := &http.Client{Timeout: timeout}
 	resp, errResp := client.Do(req)
-	if handler.Error(errResp) {
+	if errResp != nil {
 		jsoRequest.PutString("txt_msg", fmt.Sprint("Response is error [ ", errResp, " ]"))
 		return jsoRequest
 	}
@@ -42,17 +41,16 @@ func Request(jsoHost, jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 
 	if resp.StatusCode == 200 {
 		body, errBody := ioutil.ReadAll(resp.Body)
-		if handler.Error(errBody) {
+		if errBody != nil {
 			jsoRequest.PutString("txt_msg", fmt.Sprint("Can not read body of response [ ", errBody, " ]"))
 			return jsoRequest
 		}
 
 		jsoResult, errResult := jsons.JSONObjectFromString(string(body))
-		if handler.Error(errResult) {
+		if errResult != nil {
 			jsoRequest.PutString("txt_msg", fmt.Sprint("Can not parse json data [ ", errResult, " ]"))
 			return jsoRequest
 		}
-
 		return jsoResult
 	}
 

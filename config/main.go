@@ -7,8 +7,6 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/SERV4BIZ/gfp/handler"
-
 	"github.com/SERV4BIZ/coresan/config/global"
 	"github.com/SERV4BIZ/coresan/config/locals"
 	"github.com/SERV4BIZ/coresan/config/utility"
@@ -16,7 +14,9 @@ import (
 
 func main() {
 	jsoConfig, errConfig := locals.LoadConfig()
-	handler.Panic(errConfig)
+	if errConfig != nil {
+		panic(errConfig)
+	}
 	global.JSOConfig = jsoConfig
 
 	fmt.Println("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *")

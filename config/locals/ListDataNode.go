@@ -6,7 +6,6 @@ import (
 
 	"github.com/SERV4BIZ/coresan/config/utility"
 	"github.com/SERV4BIZ/gfp/files"
-	"github.com/SERV4BIZ/gfp/handler"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
@@ -15,7 +14,7 @@ func ListDataNode() (*jsons.JSONArray, error) {
 	jsaList := jsons.JSONArrayFactory()
 	pathdir := fmt.Sprint(utility.GetAppDir(), utility.DS, "datanodes")
 	filelist, err := files.ScanDir(pathdir)
-	if handler.Error(err) {
+	if err != nil {
 		return nil, err
 	}
 
