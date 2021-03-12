@@ -1,0 +1,13 @@
+github.com/SERV4BIZ/gfp v0.0.0-20210302062410-766954048867 h1:+A5jmE9bJOfJGxWrNS4kq+/Ndu9OcnagbB9f7Wh1uQY=
+github.com/SERV4BIZ/gfp v0.0.0-20210302062410-766954048867/go.mod h1:Sklm0qfnXK8wixjgHrzp7bv6Ju9ey9MOksQbdSgM3sU=
+github.com/SERV4BIZ/gfp/collection v0.0.0-20210302062410-766954048867 h1:06pFg2A36nC1GDXQR8Ercs7hbhHpOjzNHNuJwbKNQg4=
+github.com/SERV4BIZ/gfp/collection v0.0.0-20210302062410-766954048867/go.mod h1:q5gv++CP8OOYitARxvTn7w78B5KSdsRbfZNJP5hukVk=
+github.com/SERV4BIZ/gfp/datetimes v0.0.0-20210302062410-766954048867 h1:YX4pD6aeYhUha5PdMdeRURPO1nw9Bzf555HDHSOivKM=
+github.com/SERV4BIZ/gfp/datetimes v0.0.0-20210302062410-766954048867/go.mod h1:UR0QjJiEW+u/iRUI9OLL/xLO3Oyp5WXabT0rxnTN8T8=
+github.com/SERV4BIZ/gfp/files v0.0.0-20210302061413-22d8c15af3fd/go.mod h1:ZDFxg0rNOeNT/uGGvG2YQ395F6x9yQd5rV6RR0Rjkfg=
+github.com/SERV4BIZ/gfp/files v0.0.0-20210302062410-766954048867 h1:Ii4MxMkvoTYKisDFEjSSbiZXFPuzkapZMo5HkNBwTTQ=
+github.com/SERV4BIZ/gfp/files v0.0.0-20210302062410-766954048867/go.mod h1:ZDFxg0rNOeNT/uGGvG2YQ395F6x9yQd5rV6RR0Rjkfg=
+github.com/SERV4BIZ/gfp/jsons v0.0.0-20210302062410-766954048867 h1:JCbjyrFOcIkVlkoSoq/P1tdh/gPkPy2U7tVcnBySck8=
+github.com/SERV4BIZ/gfp/jsons v0.0.0-20210302062410-766954048867/go.mod h1:3tIMUd3nUCI3CD15dkNb1FiiCrEPjdRHoIcafHyMkNc=
+github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
+github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

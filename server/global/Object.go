@@ -5,7 +5,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/SERV4BIZ/coresan/config/utility"
+	"github.com/SERV4BIZ/coresan/server/utility"
 	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 )

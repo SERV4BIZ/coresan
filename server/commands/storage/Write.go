@@ -35,7 +35,7 @@ func Write(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 	txtExt := "dat"
 	exts := strings.Split(txtFilename, ".")
 	if len(exts) >= 2 {
-		txtExt = exts[len(exts)-1]
+		txtExt = strings.ToLower(exts[len(exts)-1])
 	}
 
 	txtFullpath := global.GetFullPath(txtCSNID)

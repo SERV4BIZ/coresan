@@ -5,19 +5,15 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/SERV4BIZ/coresan/server/commands/network"
 	"github.com/SERV4BIZ/coresan/server/commands/storage"
 	"github.com/SERV4BIZ/coresan/server/global"
-	"github.com/SERV4BIZ/gfp/handler"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
 
 // WorkHandler is main handler all command
 func WorkHandler(w http.ResponseWriter, r *http.Request) {
-	<-time.After(time.Millisecond)
-
 	global.MutexState.Lock()
 	global.CountState++
 	global.MutexState.Unlock()
@@ -30,11 +26,11 @@ func WorkHandler(w http.ResponseWriter, r *http.Request) {
 	jsoResult.PutInt("status", 0)
 
 	buffer, errBody := ioutil.ReadAll(r.Body)
-	if handler.Error(errBody) {
+	if errBody != nil {
 		jsoResult.PutString("txt_msg", fmt.Sprint("Can not read body from http request [ ", errBody, " ]"))
 	} else {
 		jsoCmd, errCmd := jsons.JSONObjectFromString(string(buffer))
-		if handler.Error(errCmd) {
+		if errCmd != nil {
 			jsoResult.PutString("txt_msg", fmt.Sprint("Can not load command from json string buffer [ ", errCmd, " ]"))
 		} else {
 			jsoAuthen := jsoCmd.GetObject("jso_authen")
