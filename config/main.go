@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"net/http/pprof"
 	"runtime"
 	"time"
 
@@ -57,13 +56,6 @@ func main() {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", WorkHandler)
-
-	// pprof handler
-	router.HandleFunc("/debug/pprof/", pprof.Index)
-	router.HandleFunc("/debug/pprof/profile", pprof.Profile)
-	router.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)
-	router.HandleFunc("/debug/pprof/symbol", pprof.Symbol)
-	router.HandleFunc("/debug/pprof/trace", pprof.Trace)
 
 	appsrv := &http.Server{
 		Addr:         fmt.Sprint(":", global.JSOConfig.GetInt("int_port")),
