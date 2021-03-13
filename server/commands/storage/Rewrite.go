@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/SERV4BIZ/coresan/server/global"
+	"github.com/SERV4BIZ/coresan/server/locals"
 	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
@@ -26,7 +27,7 @@ func Rewrite(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 		txtExt = strings.ToLower(exts[len(exts)-1])
 	}
 
-	txtFullpath := global.GetFullPath(txtCSNID)
+	txtFullpath := locals.GetFullPath(txtCSNID)
 	txtInfopath := fmt.Sprint(txtFullpath, global.DS, "info.json")
 	txtDatapath := fmt.Sprint(txtFullpath, global.DS, "data.dat")
 

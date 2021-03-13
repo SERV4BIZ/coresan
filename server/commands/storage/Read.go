@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/SERV4BIZ/coresan/server/global"
+	"github.com/SERV4BIZ/coresan/server/locals"
 	"github.com/SERV4BIZ/gfp/files"
 	"github.com/SERV4BIZ/gfp/jsons"
 )
@@ -16,7 +17,7 @@ func Read(jsoCmd *jsons.JSONObject) *jsons.JSONObject {
 	jsoResult.PutInt("status", 0)
 
 	txtCSNID := strings.ToLower(strings.TrimSpace(jsoCmd.GetString("txt_csnid")))
-	txtFullpath := global.GetFullPath(txtCSNID)
+	txtFullpath := locals.GetFullPath(txtCSNID)
 	txtInfopath := fmt.Sprint(txtFullpath, global.DS, "info.json")
 	txtDatapath := fmt.Sprint(txtFullpath, global.DS, "data.dat")
 	if strings.TrimSpace(txtCSNID) == "" || !files.ExistFile(txtInfopath) || !files.ExistFile(txtDatapath) {

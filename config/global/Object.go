@@ -24,6 +24,15 @@ var MutexJSOConfig sync.RWMutex
 // JSOConfig is json object for application config file
 var JSOConfig = jsons.JSONObjectFactory()
 
+// Username is authen username
+var Username = ""
+
+// Password is authen password
+var Password = ""
+
+// MaxRead is Max MultiPart of body in request
+var MaxRead int = 0
+
 // MutexState is mutex lock for MemoryState
 var MutexState sync.RWMutex
 
@@ -35,9 +44,3 @@ var LoadState = 0
 
 // CountState is counting request per second
 var CountState = 0
-
-// Username is authen username
-var Username = ""
-
-// Password is authen password
-var Password = ""

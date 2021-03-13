@@ -6,6 +6,8 @@ NAMEFREEBSD="config.freebsd"
 NAMEWINDOWS="config.windows"
 NAMEDARWIN="config.darwin"
 
+export GO111MODULE=auto
+
 rm -f $NAMEARM
 export GOOS=linux
 export GOARCH=arm64

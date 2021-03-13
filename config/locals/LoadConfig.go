@@ -14,7 +14,7 @@ func LoadConfig() (*jsons.JSONObject, error) {
 	pathfile := fmt.Sprint(utility.GetAppDir(), utility.DS, "config.json")
 	jsoConfig := jsons.JSONObjectFactory()
 	jsoConfig.PutString("txt_host", "localhost")
-	jsoConfig.PutInt("int_port", 3210)
+	jsoConfig.PutInt("int_port", 5678)
 
 	if files.ExistFile(pathfile) {
 		return jsons.JSONObjectFromFile(pathfile)

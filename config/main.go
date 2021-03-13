@@ -17,6 +17,12 @@ func main() {
 		panic(errConfig)
 	}
 	global.JSOConfig = jsoConfig
+	
+	global.MaxRead = global.JSOConfig.GetInt("int_maxread")
+	if global.MaxRead <= 0 {
+		// Default max reader is 1024MB or 1GB
+		global.MaxRead = 1024 * 1024 * 1024
+	}
 
 	fmt.Println("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
 	fmt.Println(fmt.Sprint(global.AppName, " Version ", global.AppVersion))
@@ -31,6 +37,7 @@ func main() {
 	fmt.Println("")
 	fmt.Println("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
 
+	// Load and Memory Monitor
 	go func() {
 		for {
 			var m runtime.MemStats
@@ -43,6 +50,14 @@ func main() {
 			global.MutexState.Unlock()
 
 			<-time.After(time.Second)
+		}
+	}()
+
+	// Force GC to clear up
+	go func() {
+		for {
+			<-time.After(time.Hour)
+			runtime.GC()
 		}
 	}()
 

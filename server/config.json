@@ -1,10 +1,10 @@
 {
 	"txt_username":"admin",
 	"txt_password":"Qaz74100!",
-	
 	"txt_protocol":"http",
 	"txt_host": "localhost",
 	"int_port": 8765,
 	"int_timeout":15,
+	"int_maxread":1073741824,
 	"txt_path_nfs": "/Users/watch99/local/nfs"
 }

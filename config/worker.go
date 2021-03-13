@@ -19,7 +19,7 @@ func WorkHandler(w http.ResponseWriter, r *http.Request) {
 	global.CountState++
 	global.MutexState.Unlock()
 
-	r.Body = http.MaxBytesReader(w, r.Body, 1024*1024*100)
+	r.Body = http.MaxBytesReader(w, r.Body, int64(global.MaxRead))
 	defer r.Body.Close()
 
 	w.Header().Set("Content-Type", "application/json")
