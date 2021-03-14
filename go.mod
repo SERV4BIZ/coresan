@@ -2,6 +2,8 @@ module github.com/SERV4BIZ/coresan
 
 go 1.16
 
+replace github.com/SERV4BIZ/coresan => ./
+
 require (
 	github.com/SERV4BIZ/gfp v0.0.0-20210302062410-766954048867
 	github.com/SERV4BIZ/gfp/collection v0.0.0-20210302062410-766954048867 // indirect
